@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 第一题 计算2的n次幂 n可以输入
+        // var n = parseInt(window.prompt('input'));
+        // var result = 1;
+        // for(var i=0;i<n;i++){
+        //     result*=2;
+        // }
+        // document.write(result);
+
+        // 第二题 计算n的阶乘 下面用的循环法   另外还可以用递归法
+        // var n = parseInt(window.prompt('input'));
+        // var result = 1;
+        // for(var i = n;i>0;i--){
+        //     result=i*result;
+        // }
+        // document.write(result);
+
+        //第三题 斐波那契数列 1 1 2 3 5 8 ...输出第n项
+        var n = parsfeInt(window.prompt('input'));
+        var first = 1,
+            second = 1,
+            third;
+        for(var i  = 3;i<=n;i++){
+            third = first + second;
+            first = second;
+            second = third;
+        }
+        console.log(second);
+        
+        //第五题 输入a b c三个数字打印出最大的
+        // var a = parseInt(window.prompt('input'));
+        // var b = parseInt(window.prompt('input'));
+        // var c = parseInt(window.prompt('input'));
+        // if(a>b){
+        //     if(a>c){
+        //         document.write("a="+a);
+        //     }else if(a=c){
+        //         document.write("a="+a+" c="+c);
+        //     }else{
+        //         document.write("c="+c);
+        //     }
+        // }else if(a<b){
+        //     if(b<c){
+        //         document.write("c="+c);
+        //     }else if(b>c){
+        //         document.write("b="+b);
+        //     }else{
+        //         document.write("b="+b+" c="+c);
+        //     }
+        // }else{
+        //     if(a<c){
+        //         document.write("c="+c);
+        //     }else if(a=c){
+        //         document.write("a="+a+" b="+b+" c="+c);
+        //     }else{
+        //         socument.write("a="+a+" b="+b);
+        //     }
+        // }
+
+
+
+    </script>
+</body>
+</html>
