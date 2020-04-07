@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+    //1.写一个函数 功能是告知你所选定的小动物的叫声
+    // var voiceOfAnimal = function (a) {//匿名函数写法 这种写法最常用
+    //     var result;
+    //     switch(a){
+    //         case "猫": 
+    //             result = "喵喵喵喵~";
+    //             break;
+    //         case "狗":
+    //             result = "汪汪汪";
+    //             break;
+    //         case "蛇":
+    //             result = "嘶~"
+    //             break;
+    //         default:
+    //             result = "不会叫";
+    //     }
+    //     return result;
+    // }
+
+
+    //3.定义一组函数 输入数字 逆转并输出汉字形势
+    // var reverse = function (a) {
+        
+    // }
+
+    //4.用函数实现 n的阶乘 
+    //方法一 常规循环
+    // function factorial(n){ //函数声明方式
+    //     result = 1;
+    //     for(var i = 1;i<=n;i++){
+    //         result*=i;
+    //     }
+    //     return result;
+    // }
+    //方法二 递归法  
+    // function factorial(n){
+    //     if(n==1){
+    //         return 1;
+    //     }
+    //     return n*factorial(n-1);
+    // }
+
+
+
+    //5.写一个函数 实现菲波那契数列
+    //方法一：
+    // var fib = function (n) {
+    //     var first = 1,
+    //         second = 1,
+    //         third; 
+    //     for(var i = 3;i<=n;i++){
+    //         third = first+second;
+    //         first = second;
+    //         second = third;
+    //     }
+    //     return second;
+    // }
+    //方法二 递归法
+    var fib = function (n) {
+        if( n == 1 || n == 2){
+            return 1;
+        }
+        return fib(n-1)+fib(n-2);
+    }
+
+
+
+
+
+    </script>
+</body>
+</html>
