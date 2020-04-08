@@ -1,26 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <script>
+        //闭包应用：
+
         //利用闭包实现累加器
-        function test () {
-            var count = 0;
-            function counter () {
-                count++;
-                console.log(count);
+        // function test () {
+        //     var count = 0;
+        //     function counter () {
+        //         count++;
+        //         console.log(count);
+        //     }
+        //     return counter;
+        // }
+        // var myCounter = test();
+        // myCounter();
+        // myCounter();
+        // myCounter();
+
+        //做缓存
+        // function test() {
+        //     var food = "apple";
+        //     var obj = {
+        //         eat: function () {
+        //             if (food != "") {
+        //                 console.log("eating " + food);
+        //                 food = "";
+        //             } else {
+        //                 console.log("There is no food!");
+        //             }
+        //         },
+        //         push: function (myFood) {
+        //             food = myFood
+        //         }
+        //     }
+        //     return obj;
+        // }
+
+        // var person = test();
+        // person.eat();
+        // person.eat();
+        // person.push("bananer");
+        // person.eat();
+
+
+        //模块化
+        // function test () {
+        //     var arr = [];
+        //     for(var i = 0;i < 10;i ++){
+        //         arr[i] = function () {
+        //             console.log(i);
+        //         }
+        //     }
+        //     return arr;
+        // }
+        // var myArr = test();
+        // for(var j = 0;j < myArr.length;j ++){
+        //     myArr[j]();//由于闭包的原因 将会操作同一个i 导致结果输出10个10
+        // }
+        //改进后
+        function test() {
+            var arr = [];
+            for (var i = 0; i < 10; i++) {
+                (function (j) {//通过立即执行函数解决 
+                    arr[j] = function () {
+                        console.log(j);
+                    }
+                }(i))
             }
-            return counter;
+            return arr;
         }
-        var myCounter = test();
-        myCounter();
-        myCounter();
-        myCounter();
-        
+        var myArr = test();
+        for (var j = 0; j < myArr.length; j++) {
+            myArr[j]();//此时将按照我们的心意打印出1~9的数字
+        }
+
+
+
 
 
 
@@ -29,4 +92,5 @@
 
     </script>
 </body>
+
 </html>
