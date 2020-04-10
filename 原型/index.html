@@ -7,24 +7,53 @@
 </head>
 <body>
     <script>
-        // Person.prototype.name = 'xiaoming';
-        // function Person () {
+        Person.prototype.name = 'xiaoming';
+        function Person () {
 
+        }
+        var person = new Person();
+        // var obj = {
+        //     name:'jieni'
         // }
-        // var person = new Person();
-        // console.log(person.name);
-        // Person.prototype.name = 'xiaoli';
+        // person.__proto__ = obj;
+        // Person.prototype = {}
+        Person.prototype.name = 'cherry';
+        console.log(person.name);
 
 
         //call
-        function Person (name,age) {
-            this.name = name;
-            this.age = age;
-        }
-        obj = {}
+        // function Person (name,age) {
+        //     this.name = name;
+        //     this.age = age;
+        // }
+        // obj = {}
 
-        Person.call(obj,'zhangsan',18);
+        // Person.call(obj,'zhangsan',18);
 
+
+
+        // Person.prototype.lastName = "hou";
+        // function Person () {
+
+        // }
+        // Father.prototype.lastName = 'wang';
+        // function Father () {  
+        // }
+        // function Son () {
+        // }
+        
+        // function inherit (Target,Origin) {
+        //     Target.prototype = Origin.prototype;
+        // }
+        // inherit(Son,Father);
+        // var son = new Son();
+
+        // Son.prototype = Person.prototype
+        // Son.prototype = {}
+        // var son1 = new Son();
+        
+        // console.log(son.lastName);
+        // console.log(son1.lastName);
 
 
     </script>

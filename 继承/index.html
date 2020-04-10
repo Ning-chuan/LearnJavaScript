@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //继承模式
+
+        // function inherit (Target,Origin) {
+        //     function F (){}
+        //     F.prototype = Origin.prototype;
+        //     Target.prototype = new F();
+
+        //     Target.prototype.constuctor = Target; 
+        //     Target.prototype.uber = Origin.prototype;
+        // }
+
+        //改进后 利用闭包使属性私有(封装)
+        var inherit = (function (){
+            var F = function () {}
+            return function (Target,Origin) {
+                F.prototype = Origin.prototype;
+                Target.prototype = new F();
+
+                Target.prototype.constuctor = Target;
+                Target.prototype.uber = Origin.prototype;
+            }
+        }())
+
+
+
+
+
+    </script>
+</body>
+</html>
