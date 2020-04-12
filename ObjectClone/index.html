@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+
+        var man = {
+            name: 'ming',
+            age: 19,
+            test: [1, 2, 6, 'a', 9],
+            wife: {
+                name: 'bingbing',
+                son: {
+                    sex: 'male'
+                }
+            }
+        }
+
+        //浅克隆
+        function clone(origin) {
+            var ret = {};
+            for (var prop in origin) {
+                ret[prop] = origin[prop];
+            }
+            return ret;
+        }
+
+        //深层克隆 使用递归
+        function deepClone(origin, target) {
+            target = target || {};
+            for (var prop in origin) {
+                if (origin.hasOwnProperty(prop)) {//确认该属性是自己的
+                    if(origin[prop] != null && typeof (origin[prop]) == 'object'){
+                        //数组和对象分别对待
+                    }
+                }
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>
