@@ -7,13 +7,18 @@
 </head>
 <body>
     <script>
+
         var div = document.createElement('div');
-        div.setAttribute('class','example');
         var p = document.createElement('p');
+        div.setAttribute('class','example');
         p.setAttribute('class','slogan');
-        p.innerText = '人生的长河，我把酒当歌';
-        document.body.appendChild(div);
+        // p.innerText = '人生的长河，我把酒当歌'; 方式一
+        // p.innerHTML = '人生的长河，我把酒当歌'; 方式二
+        var text = document.createTextNode('人生的长河，我把酒当歌');  //方式三
+        p.appendChild(text);
+
         div.appendChild(p);
+        document.body.appendChild(div);
         
     </script>
 </body>
