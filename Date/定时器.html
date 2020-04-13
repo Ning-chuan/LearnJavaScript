@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type='text/css'>
+    input{
+        border:1px solid #008c8c;
+        font-size:30px;
+        line-height:30px;
+        font-weight:bold;
+        text-align:right;
+    }
+    body{
+        font-size:30px;
+        line-height:30px;
+        font-weight:bold;
+    }
+    </style>
+</head>
+
+<body>
+    Minutes : <input type="text" value='0'>
+    Seconds : <input type="text" value='0'>
+    <script>
+        var minutesNode = document.getElementsByTagName("input")[0];
+        var secondsNode = document.getElementsByTagName("input")[1];
+        var minutes = 0,
+            seconds = 0;
+        var timer = setInterval(function (){
+            seconds++;
+            if(seconds == 60){
+                seconds = 0;
+                minutes++;
+                if(minutes == 3){
+                    clearInterval(timer);
+                }
+            }
+            minutesNode.value = minutes;
+            secondsNode.value = seconds;
+        },100)
+
+    </script>
+
+</body>
+
+</html>
