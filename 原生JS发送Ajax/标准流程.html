@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="test"></div>
+
+    <script>
+        var xhr = null;
+        if(window.XMLHttpRequest){
+            xhr = new XMLHttpRequest();
+        }else{
+            xhr = new ActiveXObject("Microsoft.XMLHttp");//兼容IE6以下版本
+        }
+        console.log(xhr.readyState);
+        xhr.open("get","http://developer.duyiedu.com/edu/testAjaxCrossOrigin",false);
+        //上面第三个参数填false表示 同步模式  可理解为同线程，即不可以同时进行！！！
+        //不填或者填true表示 异步模式  可理为异线程，即可以同时进行！！！
+         console.log(xhr.readyState);
+        
+        xhr.onreadystatechange = function () {
+            if(xhr.readyState == 4 && xhr.status == 200){
+                // document.getElementById("test").innerText = xhr.responseText;
+                // console.log(xhr.responseText)
+                var data = JSON.parse(xhr.responseText);
+                console.log(data);
+
+            }
+        }
+        xhr.send();
+
+        console.log('+++++++');
+
+    </script>
+</body>
+</html>
