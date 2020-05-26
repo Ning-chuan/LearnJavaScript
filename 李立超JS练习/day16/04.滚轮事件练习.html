@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        #box1{
+            width:150px;
+            height:150px;
+            background-color: chocolate;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+            var box1 = document.getElementById("box1");
+
+            box1.onmousewheel = function (event) {
+                event = event || window.event;
+                //event.wheelDelta记录滚轮滚动的数据 往上滚一下150 往下滚一下-150
+                //console.log(event.wheelDelta);
+                if(event.wheelDelta > 0){
+                    //向上滚 div应该变短
+                    if(box1.clientHeight > 50){//最小值设为50
+                        box1.style.height = box1.clientHeight - 10 + "px";
+                    }
+                }else{
+                    //向下滚 div应该变长
+                    box1.style.height = box1.clientHeight + 10 + "px";
+                }
+                /*
+                *   当滚轮滚动时，如果浏览器有滚动条，滚动条会跟着滚动
+                *   这是浏览器的默认行为  如果不希望发生 可以再函数最后返回false取消
+                * 
+                *   但是使用addEventListener()绑定响应函数时 不能使用 return false; 来取消默认行为
+                *   而应该使用event.preventDefault() 来取消
+                *   注意IE8及以下不支持此方法 使用之前先判断一下
+                */
+                event.preventDefault && event.preventDefault();
+                return false;
+            }
+        }
+    </script>
+</head>
+<body style="height: 1000px;">
+    <div id="box1"></div>
+</body>
+</html>

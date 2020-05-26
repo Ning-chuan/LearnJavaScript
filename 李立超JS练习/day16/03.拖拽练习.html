@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        #box1 {
+            width: 150px;
+            height: 150px;
+            background-color: coral;
+            position: absolute;
+        }
+
+        #box2 {
+            width: 150px;
+            height: 150px;
+            left: 300px;
+            top: 300px;
+            background-color: yellow;
+            position: absolute;
+        }
+    </style>
+    <script type="text/javascript">
+        //拖拽 功能分析：
+        //当鼠标按下时触发事件  鼠标移动时div跟着移动 鼠标松开时div停止移动
+        window.onload = function () {
+            var box1 = document.getElementById("box1");
+            var box2 = document.getElementById("box2");
+
+            drag(box1);
+            drag(box2);
+        };
+
+        function drag(obj) {
+            //1.当鼠标按下时触发事件
+            obj.onmousedown = function (event) {
+                event = event || window.event;//兼容IE8及以下
+
+                //div的水平偏移量：event.clientX-元素.offsetLeft
+                //div的垂直偏移量：event.clientY-元素.offsetTop
+                var ol = event.clientX - obj.offsetLeft;
+                var ot = event.clientY - obj.offsetTop;
+
+                //2.鼠标移动时div跟着移动
+                document.onmousemove = function (event) {
+                    event = event || window.event;//兼容IE8及以下
+
+                    obj.style.left = event.clientX - ol + "px";
+                    obj.style.top = event.clientY - ot + "px";
+                };
+
+                //3.鼠标松开时div停止移动
+                document.onmouseup = function () {
+                    //取消document的onmousemove和onmouseup事件
+                    document.onmousemove = null;
+                    document.onmouseup = null;
+                };
+                /*
+                *   当我们拖拽一个网页中的内容时，浏览器会默认去搜索引擎中搜索内容，
+                * 	此时会导致拖拽功能的异常，这个是浏览器提供的默认行为，
+                * 	如果不希望发生这个行为，则可以通过return false来取消默认行为
+                * 
+                *   但是这招对IE8不起作用
+                */
+                return false;
+            };
+        }
+    </script>
+</head>
+
+<body>
+    <div id="box2"></div>
+    <div id="box1"></div>
+</body>
+
+</html>
