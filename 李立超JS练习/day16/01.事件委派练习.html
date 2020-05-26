@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //事件的委派：
+        //  将事件绑定到目标元素的共同祖先元素上，这样后代元素上的事件触发后，会冒泡到祖先元素上
+        //  从而通过祖先元素的事件响应函数来处理
+        //事件委派的优点：避免了事件的多次绑定，提高程序性能
+        window.onload = function () {
+            //实现添加超链接按钮的功能
+            var addButton = document.getElementById('btn1');
+            var ul = document.getElementsByTagName('ul')[0];
+            addButton.onclick = function () {
+                var li = document.createElement('li');
+                li.innerHTML = "<a href='javascript:;' class='link'>我是新增的超链接</a>";
+                ul.appendChild(li);
+            }
+
+            //给每一个超链接的祖先元素ul 添加单击响应事件
+            ul.onclick = function (event) {
+                //alert("ul的单击响应事件");
+                //我们预期的效果是单击a链接时触发响应函数 而不是点击ul的所有地方都触发
+                //所以使用event对象的target属性 
+                //target属性 标记着具体是哪个对象触发的事件
+                if(event.target.className == "link"){
+                    alert("ul的单击响应事件");
+                }
+            }
+
+        }
+
+
+
+    </script>
+</head>
+<body>
+    <button id="btn1">点击添加超链接</button>
+    <ul style="background-color: #90d6d6;">
+        <li><a href="javascript:;" class="link">我是超链接一</a></li>
+        <li><a href="javascript:;" class="link">我是超链接二</a></li>
+        <li><a href="javascript:;" class="link">我是超链接三</a></li>
+    </ul>
+</body>
+</html>

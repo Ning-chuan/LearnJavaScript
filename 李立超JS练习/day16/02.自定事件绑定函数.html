@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript">
+        window.onload = function () {
+            var btn = document.getElementById('btn01');
+            // btn.addEventListener("click",function(){
+            //     alert(this);
+            // },false);
+
+            //attachEvent()是 IE8及以下独有的方法 其它浏览器没有
+            // btn.attachEvent("onclick",function(){
+            //     alert(this);
+            // })
+
+            bind(btn, "click", function () {
+                alert(this);
+            });
+        };
+
+        //自定义一个适合所有浏览器的事件绑定函数
+        function bind(obj, eventStr, fun) {
+            if (obj.addEventListener) {
+                obj.addEventListener(eventStr, fun, false);
+            } else {
+                //此时浏览器为IE8及以下
+                //  此方法中默认this是window 而我们希望this指的是调用方法时的对象
+                //  但是这个方法是有浏览器调用的 我们管不着
+                //  所以可以在外面套一个函数 让浏览器调用外层的函数 
+                //  而我们在这个函数里面用call()方法再调用实际的函数 顺便把this改成obj
+                obj.attachEvent("on" + eventStr, function () {
+                    fun.call(obj);
+                });
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+    <button id="btn01">测试按钮</button>
+</body>
+
+</html>

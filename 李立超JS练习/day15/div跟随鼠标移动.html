@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        #box1 {
+            width: 150px;
+            height: 150px;
+            background-color: chocolate;
+            position: absolute;
+        }
+        #box2 {
+            width: 400px;
+            height: 500px;
+            background-color: #008c8c;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+            document.onmousemove = function (event) {
+                var div = document.getElementById('box1');
+
+                evevnt = event || window.event;
+
+                //IE8及以下不好用 若不需要兼容IE8 可以使用下面两行
+                //pageX和pageY获取到的坐标是针对整个页面的  div的偏移量也是针对整个页面的
+                // div.style.left = event.pageX + 'px';
+                // div.style.top = event.pageY + 'px';
+
+                //通用方法:
+                var htmlObj = document.documentElement;
+                div.style.left = event.clientX + htmlObj.scrollLeft + 'px';
+                div.style.top = event.clientY + htmlObj.scrollTop + 'px';
+                //注意：clientX和clientY获取到的坐标针对的是当前窗口
+            }
+
+            var box2 = document.getElementById('box2');
+            box2.onmousemove = function (event) {
+                event.cancelBubble = true;
+            }
+
+        }
+    </script>
+</head>
+
+<body style="height:1000px;width: 2000px;">
+    <div id="box2"></div>
+    <div id="box1"></div>
+</body>
+
+</html>
