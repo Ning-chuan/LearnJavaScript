@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        #box1 {
+            width: 150px;
+            height: 150px;
+            background-color: coral;
+            position: absolute;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+
+            //var box1 = document.getElementById("box1");
+
+            var dir = 0;
+            var speed = 10;
+            var timer = setInterval(function(){
+                switch (dir) {
+                    case "ArrowLeft":
+                        //向左
+                        box1.style.left = box1.offsetLeft - speed + "px";
+                        break;
+                    case "ArrowUp":
+                        //向上
+                        box1.style.top = box1.offsetTop - speed + "px";
+                        break;
+                    case "ArrowRight":
+                        //向右
+                        box1.style.left = box1.offsetLeft + speed + "px";
+                        break;
+                    case "ArrowDown":
+                        //向下
+                        box1.style.top = box1.offsetTop + speed + "px";
+                        break;
+                }
+            },30);
+
+            document.onkeydown = function (event) {
+                event = event || window.event;
+
+                //console.log(event.code);
+
+                if(event.ctrlKey){//判断ctrl键是否被按下
+                    speed = 30;
+                }else{
+                    //如果ctrl没有被按下 需要把速度恢复成10 防止之前加速过后速度一直为30
+                    speed = 10;
+                }
+
+                dir = event.code;
+            };
+            //按键松开时 div不再移动
+            document.onkeyup = function () {
+                //设置方向为0即可 而不是清除定时器 如果清除了定时器 以后再按方向键 div再也不会移动了
+                dir = 0;
+            }
+
+        };
+    </script>
+</head>
+
+<body>
+    <div id="box1"></div>
+</body>
+
+</html>

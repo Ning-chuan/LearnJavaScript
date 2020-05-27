@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        #box1 {
+            width: 150px;
+            height: 150px;
+            background-color: coral;
+            position: absolute;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+
+            //var box1 = document.getElementById("box1");
+
+            document.onkeydown = function (event) {
+                event = event || window.event;
+
+                //console.log(event.code);
+                
+                var speed = 10;
+
+                if(event.ctrlKey){//判断ctrl键是否被按下
+                    speed = 60;
+                }
+
+                switch (event.code) {
+                    case "ArrowLeft":
+                        //向左
+                        box1.style.left = box1.offsetLeft - speed + "px";
+                        break;
+                    case "ArrowUp":
+                        //向上
+                        box1.style.top = box1.offsetTop - speed + "px";
+                        break;
+                    case "ArrowRight":
+                        //向右
+                        box1.style.left = box1.offsetLeft + speed + "px";
+                        break;
+                    case "ArrowDown":
+                        //向下
+                        box1.style.top = box1.offsetTop + speed + "px";
+                        break;
+                }
+            };
+        };
+    </script>
+</head>
+
+<body>
+    <div id="box1"></div>
+</body>
+
+</html>

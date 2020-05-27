@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        *{
+            margin:0;
+            padding:0;
+        }
+        #box1{
+            width:150px;
+            height:150px;
+            background-color:cornflowerblue;
+            position: absolute;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+            var btn1 = document.getElementById("btn1");
+            //定义一个变量 作为定时器的标识
+            var timer;
+
+            btn1.onclick = function () {
+
+                clearInterval(timer);
+                timer = setInterval(function(){
+
+                    var box1 = document.getElementById("box1");
+                    //获取盒子当前值
+                    var oldVal = parseInt(getComputedStyle(box1,null)["left"]);
+                    //var oldVal = box1.offsetLeft;
+                    
+                    //计算新值
+                    var newVal = oldVal + 13;
+
+                    if(newVal > 800){
+                        newVal = 800;
+                    }
+
+                    //设置盒子新位置
+                    console.log(newVal);
+                    box1.style.left = newVal + "px";
+                    
+                    if(newVal == 800){
+                        clearInterval(timer);
+                    }
+
+                },30);
+            };
+
+        };
+    </script>
+</head>
+<body>
+    <button id="btn1">点击按钮盒子向右移动</button>
+    <br><br>
+    <div id="box1"></div>
+    <div style="width: 0; height: 1000px;border-left: 2px solid black;position: absolute;left: 800px;top:0;"></div>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #box1 {
+            width: 150px;
+            height: 150px;
+            background-color: cornflowerblue;
+            position: absolute;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+            var box1 = document.getElementById("box1");
+            var btn1 = document.getElementById("btn1");
+            var btn2 = document.getElementById("btn2");
+
+            //点击第一个按钮 box1向右移动
+            btn1.onclick = function () {
+                move(box1,800,20);
+            };
+            
+            //点击第二个按钮 box1向左移动
+            btn2.onclick = function () {
+                move(box1,0,20);
+            };
+
+        };
+        /*
+        * 抽离出一个方法 用于盒子的移动
+        * 参数：
+        * obj:要绑定的对象
+        * target:目标位置
+        * speed:移动速度 默认调用方法时传递的都是正数
+        */
+        var timer;
+        function move(obj, target, speed) {
+            clearInterval(timer);
+
+            //获取盒子当前距离
+            var current = parseInt(getComputedStyle(obj, null)["left"]);
+            if(current > target){
+                //此时当前位置大于目标位置 应当向左移动 
+                speed = -speed;
+            }
+
+            timer = setInterval(function () {
+
+                //获取盒子当前值
+                var oldVal = parseInt(getComputedStyle(obj, null)["left"]);
+                //var oldVal = obj.offsetLeft;
+
+                //计算新值
+                var newVal = oldVal + speed;
+
+                if (speed > 0 && newVal > target || speed < 0 && newVal < target) {
+                    //条件一：向右移动并且新距离大于目标值
+                    //条件二：向左移动并且新距离小于目标值
+                    newVal = target;
+                }
+
+                //设置盒子新位置
+                obj.style.left = newVal + "px";
+
+                if (newVal == target) {
+                    //到目的地后清除定时器
+                    clearInterval(timer);
+                }
+
+            }, 30);
+        };
+    </script>
+</head>
+
+<body>
+    <button id="btn1">点击按钮盒子向右移动</button>
+    <button id="btn2">点击按钮盒子向左移动</button>
+    <br><br>
+    <div id="box1"></div>
+    <div style="width: 0; height: 1000px;border-left: 2px solid black;position: absolute;left: 800px;top:0;"></div>
+</body>
+
+</html>
